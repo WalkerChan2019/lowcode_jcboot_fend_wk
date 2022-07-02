@@ -14,6 +14,7 @@
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 vite build && esno ./build/script/postBuild.ts",
     "build:test": "cross-env vite build --mode test && esno ./build/script/postBuild.ts",
     "build:no-cache": "yarn clean:cache && npm run build",
+    "gen:icon": "esno ./build/generate/icon/index.ts",
     "report": "cross-env REPORT=true npm run build",
     "type:check": "vue-tsc --noEmit --skipLibCheck",
     "preview": "npm run build && vite preview",
@@ -30,16 +31,12 @@
     "test:gzip": "http-server dist --cors --gzip -c-1",
     "test:br": "http-server dist --cors --brotli -c-1",
     "reinstall": "rimraf yarn.lock && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
-    "prepare": "husky install",
-    "gen:icon": "esno ./build/generate/icon/index.ts"
+    "prepare": "husky install"
   },
   "dependencies": {
-    "@ant-design/colors": "^6.0.0",
-    "@ant-design/icons-vue": "^6.1.0",
-    "@iconify/iconify": "^2.0.4",
     "@jeecg/online": "1.0.1",
+    "@iconify/iconify": "^2.0.4",
     "@vueuse/core": "^6.6.2",
-    "@vueuse/shared": "^8.7.5",
     "@zxcvbn-ts/core": "^1.0.0-beta.0",
     "ant-design-vue": "2.2.8",
     "axios": "^0.23.0",
@@ -57,7 +54,6 @@
     "lodash-es": "^4.17.21",
     "md5": "^2.3.0",
     "mockjs": "^1.1.0",
-    "moment": "^2.29.3",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^6.2.0",
     "pinia": "2.0.0-rc.14",
@@ -72,17 +68,16 @@
     "vue": "^3.2.20",
     "vue-cropper": "^0.5.6",
     "vue-cropperjs": "^5.0.0",
-    "vue-demi": "^0.13.1",
     "vue-i18n": "^9.1.9",
     "vue-infinite-scroll": "^2.0.2",
-    "vue-json-pretty": "^2.0.4",
     "vue-print-nb-jeecg": "^1.0.10",
     "vue-router": "^4.0.12",
     "vue-types": "^4.1.1",
     "vuedraggable": "^4.1.0",
     "vxe-table": "4.1.0",
     "vxe-table-plugin-antd": "^3.0.3",
-    "xe-utils": "^3.3.1"
+    "xe-utils": "^3.3.1",
+    "vue-json-pretty": "^2.0.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
@@ -161,6 +156,7 @@
     "vue-tsc": "^0.28.7"
   },
   "resolutions": {
+    "//": "Used to install imagemin dependencies, because imagemin may not be installed in China. If it is abroad, you can delete it",
     "bin-wrapper": "npm:bin-wrapper-china",
     "rollup": "^2.56.3"
   },
